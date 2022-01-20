@@ -1,0 +1,526 @@
+% Project: ITY Projekt 5
+% Autor:   Evgenii Shiliaev
+% Datum:   01.05.2021
+
+\documentclass[15pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[czech]{babel}
+
+\usepackage{picture}
+\usepackage{color}
+\definecolor{My_Blue}{HTML}{1b4eb3}
+
+\usetheme{Madrid}
+\usecolortheme{whale}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Přehled}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\title[Vázané seznamy]{Vázané seznamy}
+\subtitle{Základní přehled}
+\author{Evgenii Shiliaev}
+\institute[VUT FIT]{Fakulta informačních technologií\\Vysoké učení technické v~Brně}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Co je vázaný seznam}
+\begin{frame}{Definice}
+	\subsection{Definice}
+	\begin{block}{Definice}
+		\emph{Vázaný seznam} je dynamická datová struktura, která obsahuje položky stejného datového typu, jež provázány odkazy.
+	\end{block}
+
+	\begin{figure}
+		\centering
+		\bigskip
+		\begin{picture}(320,25)
+			\linethickness{1pt}
+			\put(0,0){\dashbox(20,30){}}
+			\put(10,15){\vector(1,0){20}}
+			\put(30,0){\framebox(50,30){data$_{n-1}$}}
+			\put(80,0){\framebox(20,30){}}
+			\put(90,15){\circle*{4}}
+			\put(90,15){\vector(1,0){40}}
+
+			\put(130,0){\framebox(50,30){data$_{n}$}}
+			\put(180,0){\framebox(20,30){}}
+			\put(190,15){\circle*{4}}
+			\put(190,15){\vector(1,0){40}}
+
+			\put(230,0){\framebox(50,30){data$_{n+1}$}}
+			\put(280,0){\framebox(20,30){}}
+			\put(290,15){\circle*{4}}
+			\put(290,15){\vector(1,0){20}}
+			\put(310,0){\dashbox(20,30){}}
+
+		\end{picture}
+		\caption{Prvky jednosměrného seznamu}
+		\label{fig:vázaný_jednosmerny_seznam}
+	\end{figure}
+
+	\begin{figure}
+		\centering
+		\begin{picture}(320,50)
+			\linethickness{1pt}
+			\put(0,10){\dashbox(20,30){}}
+			\put(10,25){\vector(1,0){20}}
+			\put(30,10){\framebox(50,30){{data$_{n-1}$}}}
+			\put(80,10){\framebox(10,30){}}
+			\put(85,25){\circle*{4}}
+			\put(85,25){\line(0,1){25}}
+			\put(85,50){\vector(-1,0){100}}
+			\put(90,10){\framebox(10,30){}}
+			\put(95,25){\circle*{4}}
+			\put(95,25){\vector(1,0){35}}
+
+			\put(130,10){\framebox(50,30){data$_{n}$}}
+			\put(180,10){\framebox(10,30){}}
+			\put(185,25){\circle*{4}}
+			\put(185,25){\line(0,-1){25}}
+			\put(185,0){\line(-1,0){105}}
+			\put(80,0){\vector(0,1){10}}
+			\put(190,10){\framebox(10,30){}}
+			\put(195,25){\circle*{4}}
+			\put(195,25){\vector(1,0){35}}
+
+			\put(230,10){\framebox(50,30){data$_{n+1}$}}
+			\put(280,10){\framebox(10,30){}}
+			\put(285,25){\circle*{4}}
+			\put(285,25){\line(0,1){25}}
+			\put(285,50){\line(-1,0){105}}
+			\put(180,50){\vector(0,-1){10}}
+			\put(290,10){\framebox(10,30){}}
+			\put(295,25){\circle*{4}}
+			\put(295,25){\vector(1,0){15}}
+			\put(310,10){\dashbox(20,30){}}
+
+		\end{picture}
+		\caption{Prvky obousměrného seznamu}
+		\label{fig:vázaný_oboucmerny_seznam}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Struktura seznamu}
+	\subsection{Struktura}
+
+	\begin{itemize}
+		\item {objekt seznamu}
+		      \begin{itemize}
+			      \item {\emph{head} - ukazatel na začátek}
+			      \item {\emph{tail} - ukazatel na konec (nepovinné)}
+		      \end{itemize}
+		\item {prvky seznamu}
+	\end{itemize}
+
+	\begin{figure}
+		\centering
+		\bigskip
+		\begin{picture}(280,115)
+			\linethickness{1pt}
+			\put(0,25){\framebox(50,30){data$_{1}$}}
+			\put(50,25){\framebox(20,30){}}
+			\put(60,40){\circle*{4}}
+			\put(60,40){\vector(1,0){40}}
+
+			\put(100,25){\framebox(50,30){data$_{2}$}}
+			\put(150,25){\framebox(20,30){}}
+			\put(160,40){\circle*{4}}
+			\put(160,40){\vector(1,0){40}}
+
+			\put(200,25){\framebox(50,30){data$_{3}$}}
+			\put(250,25){\framebox(20,30){}}
+			\put(260,40){\circle*{4}}
+			\put(260,40){\vector(0,-1){25}}
+			\put(250, 0){\makebox(20,20){NULL}}
+
+			\put(0,70){\framebox(35,30){}}
+			\put(17,85){\circle*{4}}
+			\put(17,85){\line(0,-1){23}}
+			\put(17,62){\line(1,0){33}}
+			\put(50,62){\vector(0,-1){8}}
+			\put(0,100){\makebox(35,15){head}}
+
+			\put(35,70){\dashbox(35,30){}}
+			\put(52,85){\circle*{4}}
+			\put(52,85){\dashbox(198,0){}}
+			\put(250,55){\dashbox(0,30){}}
+			\put(250,60){\vector(0,-1){5}}
+
+			\put(35,100){\makebox(35,15){tail}}
+
+		\end{picture}
+		\caption{Jednosměrný lineární seznam}
+		\label{fig:jednosmerny_lineární_seznam}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}{Druhy seznamu}
+	\subsection{Druhy}
+	\begin{itemize}
+		\item {Podle počtu ukazatelů}
+	\end{itemize}
+
+	\begin{figure}
+		\centering
+		\bigskip
+		\begin{picture}(280,55)
+			\linethickness{1pt}
+			\put(0,25){\framebox(50,30){data$_{1}$}}
+			\put(50,25){\framebox(20,30){}}
+			\put(60,40){\circle*{4}}
+			\put(60,40){\vector(1,0){40}}
+
+			\put(100,25){\framebox(50,30){data$_{2}$}}
+			\put(150,25){\framebox(20,30){}}
+			\put(160,40){\circle*{4}}
+			\put(160,40){\vector(1,0){40}}
+
+			\put(200,25){\framebox(50,30){data$_{3}$}}
+			\put(250,25){\framebox(20,30){}}
+			\put(260,40){\circle*{4}}
+			\put(260,40){\vector(0,-1){25}}
+			\put(250, 0){\makebox(20,20){NULL}}
+
+		\end{picture}
+		\caption{Jednosměrný lineární seznam}
+		\label{fig:jednosmerny_lineární_seznam_bez_head}
+	\end{figure}
+
+	\begin{figure}
+		\centering
+		\begin{picture}(280,60)
+			\linethickness{1pt}
+			\put(0,20){\framebox(50,30){{data$_{1}$}}}
+			\put(50,20){\framebox(10,30){}}
+			\put(55,35){\circle*{4}}
+			\put(55,35){\vector(0,-1){25}}
+			\put(45, 0){\makebox(20,10){NULL}}
+			\put(60,20){\framebox(10,30){}}
+			\put(65,35){\circle*{4}}
+			\put(65,35){\vector(1,0){35}}
+
+			\put(100,20){\framebox(50,30){data$_{2}$}}
+			\put(150,20){\framebox(10,30){}}
+			\put(155,35){\circle*{4}}
+			\put(155,35){\line(0,1){25}}
+			\put(155,60){\line(-1,0){105}}
+			\put(50,60){\vector(0,-1){10}}
+			\put(160,20){\framebox(10,30){}}
+			\put(165,35){\circle*{4}}
+			\put(165,35){\vector(1,0){35}}
+
+			\put(200,20){\framebox(50,30){data$_{3}$}}
+			\put(250,20){\framebox(10,30){}}
+			\put(255,35){\circle*{4}}
+			\put(255,35){\line(0,-1){25}}
+			\put(255,10){\line(-1,0){105}}
+			\put(150,10){\vector(0,1){10}}
+			\put(260,20){\framebox(10,30){}}
+			\put(265,35){\circle*{4}}
+			\put(265,35){\vector(0,-1){25}}
+			\put(255, 0){\makebox(20,10){NULL}}
+
+		\end{picture}
+		\caption{Obousměrný lineární seznam}
+		\label{fig:oboucmerny_lineární_seznam_bez_head}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}{Druhy seznamu }
+	\begin{itemize}
+		\item {Podle ukazatele posledního prvku}
+	\end{itemize}
+	\begin{figure}
+		\centering
+		\bigskip
+		\begin{picture}(280,55)
+			\linethickness{1pt}
+			\put(0,25){\framebox(50,30){data$_{1}$}}
+			\put(50,25){\framebox(20,30){}}
+			\put(60,40){\circle*{4}}
+			\put(60,40){\vector(1,0){40}}
+
+			\put(100,25){\framebox(50,30){data$_{2}$}}
+			\put(150,25){\framebox(20,30){}}
+			\put(160,40){\circle*{4}}
+			\put(160,40){\vector(1,0){40}}
+
+			\put(200,25){\framebox(50,30){data$_{3}$}}
+			\put(250,25){\framebox(20,30){}}
+			\put(260,40){\circle*{4}}
+			\put(260,40){\line(0,-1){25}}
+			\put(260,15){\line(-1,0){210}}
+			\put(50,15){\vector(0, 1){10}}
+
+		\end{picture}
+		\caption{Jednosměrný cyklický seznam}
+		\label{fig:jednosmerny_cyklický_seznam_bez_head}
+	\end{figure}
+
+	\begin{figure}
+		\centering
+		\begin{picture}(310,60)
+			\linethickness{1pt}
+
+			\textcolor{cyan}{
+				\put(0,35){\dashbox(10,0){}}
+				\put(10,35){\vector(1,0){10}}}
+			\put(20,20){\framebox(50,30){{data$_{1}$}}}
+			\put(70,20){\framebox(10,30){}}
+			\textcolor{My_Blue}{
+				\put(75,35){\circle*{4}}
+				\put(75,35){\line(0,1){25}}
+				\put(75,60){\line(-1,0){65}}
+				\put(0,60){\dashbox(10,0){}}}
+
+			\put(80,20){\framebox(10,30){}}
+			\put(85,35){\circle*{4}}
+			\put(85,35){\vector(1,0){35}}
+
+			\put(120,20){\framebox(50,30){data$_{2}$}}
+			\put(170,20){\framebox(10,30){}}
+			\put(175,35){\circle*{4}}
+			\put(175,35){\line(0,-1){25}}
+			\put(175,10){\line(-1,0){105}}
+			\put(70,10){\vector(0,1){10}}
+			\put(180,20){\framebox(10,30){}}
+			\put(185,35){\circle*{4}}
+			\put(185,35){\vector(1,0){35}}
+
+			\put(220,20){\framebox(50,30){data$_{3}$}}
+			\put(270,20){\framebox(10,30){}}
+			\put(275,35){\circle*{4}}
+			\put(275,35){\line(0,1){25}}
+			\put(275,60){\line(-1,0){105}}
+			\put(170,60){\vector(0,-1){10}}
+			\put(280,20){\framebox(10,30){}}
+			\textcolor{cyan}{
+				\put(285,35){\circle*{4}}
+				\put(285,35){\line(1,0){10}}
+				\put(295,35){\dashbox(15,0){}}}
+
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\textcolor{My_Blue}{
+				\put(291,10){\dashbox(15,0){}}
+				\put(266,10){\line(1,0){25}}
+				\put(266,10){\vector(0,1){10}}}
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{picture}
+		\caption{Obousměrný cyklický seznam}
+		\label{fig:oboucmerny_cyklický_seznam_bez_head}
+	\end{figure}
+\end{frame}
+
+\section{Základní operace}
+\subsection{Vložení prvku}
+\begin{frame}{Vložení prvku}
+	\begin{figure}
+		\centering
+		\bigskip
+		\begin{picture}(280,135)
+			\linethickness{1pt}
+			\put(0,55){\framebox(50,30){data$_{1}$}}
+			\put(50,55){\framebox(20,30){}}
+			\put(60,70){\circle*{4}}
+			\put(60,70){\vector(1,0){40}}
+
+			\put(100,55){\framebox(50,30){data$_{3}$}}
+			\put(150,55){\framebox(20,30){}}
+			\put(160,70){\circle*{4}}
+			\put(160,70){\vector(1,0){40}}
+
+			\put(200,55){\framebox(50,30){data$_{4}$}}
+			\put(250,55){\framebox(20,30){}}
+			\put(260,70){\circle*{4}}
+			\put(260,70){\vector(0,-1){25}}
+			\put(250, 30){\makebox(20,20){NULL}}
+
+			\put(0,100){\framebox(35,30){}}
+			\put(17,115){\circle*{4}}
+			\put(17,115){\line(0,-1){23}}
+			\put(17,92){\line(1,0){33}}
+			\put(50,92){\vector(0,-1){8}}
+			\put(0,130){\makebox(35,15){head}}
+
+			\put(35,100){\dashbox(35,30){}}
+			\put(52,115){\circle*{4}}
+			\put(52,115){\dashbox(198,0){}}
+			\put(250,85){\dashbox(0,30){}}
+			\put(250,90){\vector(0,-1){5}}
+			\put(35,130){\makebox(35,15){tail}}
+			\put(50,0){\framebox(50,30){data$_{2}$}}
+			\put(100,0){\framebox(20,30){}}
+			\put(110,15){\circle*{4}}
+
+			\pause
+
+			\textcolor{My_Blue}{
+				\put(60,70){\circle*{6}}
+				\put(110,15){\circle*{6}}}
+
+			\pause
+
+			\textcolor{red}{
+				\linethickness{2pt}
+				\put(78,65){\line(1,1){10}}
+				\put(88,65){\line(-1,1){10}}}
+
+			\pause
+			{\color{cyan}
+				\put(53,70){\circle*{6}}
+				\put(53,70){\line(0,-1){30}}
+				\put(53,40){\line(1,0){40}}
+				\put(93,40){\vector(0, -1){10}}}
+			{\color{My_Blue}
+				\put(100,15){\line(1,0){40}}
+				\put(140,15){\vector(0, 1){40}}}
+
+		\end{picture}
+		\caption{Vložení prvku do jednosměrného lineárního seznamu}
+		\label{fig:jednosmerny_lineární_seznam_vloženi}
+	\end{figure}
+\end{frame}
+
+\subsection{Odstranění prvku}
+\begin{frame}{Odstranění prvku}
+	\begin{figure}
+		\centering
+		\bigskip
+		\begin{picture}(280,135)
+			\linethickness{1pt}
+			\put(0,55){\framebox(50,30){data$_{1}$}}
+			\put(50,55){\framebox(20,30){}}
+			\put(60,70){\circle*{4}}
+			\put(60,70){\vector(1,0){40}}
+
+			\put(100,55){\framebox(50,30){data$_{2}$}}
+			\put(150,55){\framebox(20,30){}}
+			\put(160,70){\circle*{4}}
+			\put(160,70){\vector(1,0){40}}
+
+			\put(200,55){\framebox(50,30){data$_{3}$}}
+			\put(250,55){\framebox(20,30){}}
+			\put(260,70){\circle*{4}}
+			\put(260,70){\vector(0,-1){25}}
+			\put(250, 30){\makebox(20,20){NULL}}
+
+			\put(100,100){\framebox(35,30){}}
+			\put(117,115){\circle*{4}}
+			\put(117,115){\line(-1,0){67}}
+			\put(50,115){\vector(0,-1){30}}
+			\put(100,130){\makebox(35,15){head}}
+
+			\put(135,100){\dashbox(35,30){}}
+			\put(152,115){\circle*{4}}
+			\put(152,115){\dashbox(98,0){}}
+			\put(250,85){\dashbox(0,30){}}
+			\put(250,90){\vector(0,-1){5}}
+			\put(135,130){\makebox(35,15){tail}}
+
+			\put(0,100){\framebox(35,30){}}
+			\put(0,130){\makebox(35,15){tmp}}
+
+			\pause
+
+			\textcolor{My_Blue}{
+				\put(17,115){\circle*{6}}
+				\put(160,70){\circle*{6}}
+				\put(160,70){\vector(1,0){40}}}
+
+			\pause
+			\textcolor{red}{
+				\put(75,65){\line(1,1){10}}
+				\put(85,65){\line(-1,1){10}}}
+		\end{picture}
+		\label{fig:jednosmerny_lineární_seznam_odstranění(1)}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Odstranění prvku}
+	\begin{figure}
+		\centering
+		\bigskip
+		\begin{picture}(280,135)
+			\linethickness{1pt}
+			\put(0,55){\framebox(50,30){data$_{1}$}}
+			\put(50,55){\framebox(20,30){}}
+			\put(60,70){\circle*{4}}
+
+			\put(200,55){\framebox(50,30){data$_{3}$}}
+			\put(250,55){\framebox(20,30){}}
+			\put(260,70){\circle*{4}}
+			\put(260,70){\vector(0,-1){25}}
+			\put(250, 30){\makebox(20,20){NULL}}
+
+			\put(100,100){\framebox(35,30){}}
+			\put(117,115){\circle*{4}}
+			\put(117,115){\line(-1,0){67}}
+			\put(50,115){\vector(0,-1){30}}
+			\put(100,130){\makebox(35,15){head}}
+
+			\put(135,100){\dashbox(35,30){}}
+			\put(152,115){\circle*{4}}
+			\put(152,115){\dashbox(98,0){}}
+			\put(250,85){\dashbox(0,30){}}
+			\put(250,90){\vector(0,-1){5}}
+			\put(135,130){\makebox(35,15){tail}}
+
+			\put(0,100){\framebox(35,30){}}
+			\put(0,130){\makebox(35,15){tmp}}
+
+			\textcolor{My_Blue}{
+				\put(17,115){\circle*{6}}}
+
+			\pause
+
+			\textcolor{My_Blue}{
+				\put(56,70){\circle*{6}}
+				\put(56,70){\vector(1,0){140}}}
+
+		\end{picture}
+		\caption{Odstranění prvku z~jednosměrného lineárního seznamu}
+		\label{fig:jednosmerny_lineární_seznam_odstranění(2)}
+	\end{figure}
+
+\end{frame}
+
+\section{Použití}
+\begin{frame}{Výhody}
+	\subsection{Výhody}
+
+	\begin{itemize}
+		\item Je možné měnit počet položek za běhu
+		\item Ještě neinicializováné položky nezabírají místo v~paměti
+		\item Vložení/odebrání položky nevyžaduje přesun všech následujících položek nar ozdíl od pole
+		\item Vytváří se na hromadě
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Nevýhody}
+	\subsection{Nevýhody}
+
+	\begin{itemize}
+		\item Není možné přistupovat k~libovolné položce pomocí indexu
+		\item Je potřeba hlídat alokovanou paměť
+		\item Není vhodným řešením, pokud režie ukazatelů je větší než je potřeba pro příslušnou datovou strukturu
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+	\centering \Huge
+	\emph{Děkuji za pozornost!}
+\end{frame}
+
+\end{document}
+
