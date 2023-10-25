@@ -1,13 +1,12 @@
-# ITY-Project5-2021
+# ITY-Project05-2021
 
-Solution of the 5th ITY project in 2020/21. \
-Řešení 5. projektu z předmětu ITY v roce 2020/21. \
-VUT FIT
+Solution for the 5th project from the subject _'ITY (Typography and Publishing)'_ for the academic year 2020/21 at VUT FIT. \
+Řešení 5. projektu z předmětu _'ITY (Typografie a publikování)'_ pro akademický rok 2020/21 na VUT FIT.
 
-## Hodnocení
+## Evaluation
 
-| Komentář                | Penalizace |       Stav |
-| :---------------------- | :--------: | ---------: |
-| chybi slozitost operaci |     -2     | Neopraveno |
+| Mistake                          | Penalties |  Status |
+| :------------------------------- | :-------: | ------: |
+| missing complexity of operations |    -2     | Unfixed |
 
-Celkové hodnocení   **13/15** b.
+Total points: **13/15**
