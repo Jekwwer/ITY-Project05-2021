@@ -1,51 +1,54 @@
-# ITY-Project05-2021
-
-Solution for the 5th project from the subject _'ITY (Typography and Publishing)'_ for the academic year 2020/21 at VUT FIT. \
-Řešení 5. projektu z předmětu _'ITY (Typografie a publikování)'_ pro akademický rok 2020/21 na VUT FIT.
-
-## Task
+# **ITY-Project05-2021**:
 
 ### LaTeX Presentation Assignment: Linked Lists
 
-**Objective**: Create a meaningful presentation in LaTeX on the topic of Linked Lists.
+> 🎓 **University**: [VUT FIT](https://www.fit.vut.cz/)
+>
+> 📚 **Course**: [Typography and Publishing (ITY)](https://www.fit.vut.cz/study/course/268283/)
+>
+> 📅 **Academic Year**: 2020/21
 
-**Slide Count**: Between 6 to 12 slides.
+## 📝 Task Overview
 
-**Expected Content**:
+🎯 **Objective**: Create a meaningful presentation in LaTeX on the topic of Linked Lists.
 
-1. **Introductory and Motivational Slide**: Introduce the topic and provide a reason for its importance.
-2. **Explanation**: Elaborate on the core idea behind linked lists.
-3. **Illustrations**: Include appropriately chosen illustrative images to enhance understanding.
-4. **Complexity**: Detail the complexities associated with various operations on linked lists.
+### 📄 **Expected Content**:
 
-**Additional Requirements**:
+- **Introductory and Motivational Slide**: Introduce the topic and provide a reason for its importance.
+- **Explanation**: Elaborate on the core idea behind linked lists.
+- **Illustrations**: Include appropriately chosen illustrative images to enhance understanding.
+- **Complexity**: Detail the complexities associated with various operations on linked lists.
+- **Slide Count**: Between 6 to 12 slides.
 
-1. **Bullets**: Utilize bullet points to organize content.
-2. **Slide Numbering**: Number the slides for easy reference.
+### 🛠️ **Additional Requirements**:
 
-**Evaluation Criteria**:
+- **Bullets**: Utilize bullet points to organize content.
+- **Slide Numbering**: Number the slides for easy reference.
+
+### 📊 **Evaluation Criteria**:
 
 - The informative contribution of each slide will be assessed.
 
-**Style Guidance**:
+### 🎨 **Style Guidance**:
 
 - There isn't a mandatory style, but:
   - It's highly recommended to use the `beamer` class.
   - It's advised to avoid using the `prosper` class.
 
-**Compilation**:
+### 💻 **Compilation**:
 
-- The presentation will be compiled using your provided Makefile on the Merlin server.
+- The presentation will be compiled using your provided `Makefile` on the Merlin server.
 - Projects that cannot be compiled will be awarded 0 points.
 
-**Submission Requirements**:
+### 📤 **Submission Requirements**:
 
 - Maximum file size for submission: 1 MB.
 
-## Evaluation
+## 📊 **Evaluation Results**
 
-| Mistake                          | Penalties |  Status |
-| :------------------------------- | :-------: | ------: |
-| missing complexity of operations |    -2     | Unfixed |
-
-Total points: **13/15**
+| Note                                             |      Status |            |
+| :----------------------------------------------- | ----------: | ---------: |
+| Missing complexity of operations **(-2 points)** | _NOT Fixed_ |            |
+|                                                  |             |            |
+| **Total Points:**                                |             |  **13/15** |
+|                                                  |             | 🟢🟢🟢🟢🟡 |
